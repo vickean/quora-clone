@@ -10,6 +10,9 @@ gem 'sinatra-contrib'
 # Adding thin gem as advised
 gem 'thin'
 
+# Adding password encryption
+gem 'bcrypt'
+
 # Adding ActiveRecord and Database Components
 gem 'activerecord'
 gem 'activesupport'
@@ -27,6 +30,7 @@ gem 'rspec'
 group :development, :test do
 	# Adding shotgun for local web hosting
 	gem 'shotgun'
+	gem 'byebug'
 end
 
 group :production do

@@ -1,0 +1,8 @@
+\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z
+# for valid emails. inclusive of something@yahoo.co.uk.
+
+^(?=.​[\p{Ll}])(?=.​[\p{Lu}])(?=.​\d)(?=.​[.?​!@#$%^&​])[\p{L}\d\.?​!@#$%^&​]{8,}
+1 upper (any unicode), 1 lower, 1 number, one symbol, 8 chars minimum.
+
+validates :thingtovalidate, :format => {:with => //}
+# validates format regex.
