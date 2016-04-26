@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 	# This is Sinatra! Remember to create a migration!
 	attr_accessor :password
-	validates :email, uniqueness:true, :format => {:with => /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/}
+	validates :email, uniqueness:true, presence: true, :format => {:with => /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/}
+	validates :username, presence: true
 
 	include BCrypt
 

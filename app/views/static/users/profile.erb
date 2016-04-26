@@ -1,0 +1,17 @@
+<div>
+  <h1>SharQ</h1>
+  <h3>Answers. Fast!</h3>
+</div>
+
+<div>
+  <% current_user %>
+  <h2>Welcome <%= @current_user.username %>!</h2>
+</div>
+
+<div>
+  <% if logged_in? %>
+  <form action=/logout method=get>
+  	<input id="logout_button" type="submit" value="Log Out">
+  </form>
+  <% end %>
+</div>

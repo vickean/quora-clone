@@ -2,6 +2,10 @@ get '/' do
   erb :"static/index"
 end
 
+get '/loginsignup' do
+  erb :"static/users/loginsignup"
+end
+
 post '/signup' do
   user = User.new(params[:user])
   if params[:user][:password].length < 8
@@ -15,22 +19,37 @@ post '/signup' do
   end
 end
 
+get '/pswd_too_shrt' do
+  erb :"static/users/pswdtooshrt"
+end
+
+get '/saved' do
+  erb :"static/users/signupsaved"
+end
+
+get '/not_saved' do
+  erb :"static/users/signupnotsaved"
+end
+
 post '/login' do
-  # pswd = params[:encrypted_password]
-  # @login = User.find_by(params[:email])
-  #
-  # if BCrypt::Password.new(@login.encrypted_password) == pswd
-  #   erb :"static/profile"
-  # else
-  #   redirect '/accessdenied'
-  # end
   @user = User.authenticate(params[:user][:email], params[:user][:password])
   if @user
     log_in(@user)
-    erb :"static/profile"
+    erb :"static/users/profile"
   else
-    @error_message = "Wrong email or password."
     redirect '/error'
   end
-
 end
+
+get '/error' do
+  erb :"static/users/wrongdetails"
+end
+
+get '/logout' do
+  log_out
+  redirect '/'
+end
+
+# get '/users/:id' do
+#
+# end
