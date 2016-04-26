@@ -1,7 +1,3 @@
-get '/' do
-  erb :"static/index"
-end
-
 get '/loginsignup' do
   erb :"static/users/loginsignup"
 end
@@ -49,7 +45,3 @@ get '/logout' do
   log_out
   redirect '/'
 end
-
-# get '/users/:id' do
-#
-# end

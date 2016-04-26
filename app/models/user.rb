@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
 	# This is Sinatra! Remember to create a migration!
+	include BCrypt
 	attr_accessor :password
 	validates :email, uniqueness:true, presence: true, :format => {:with => /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/}
 	validates :username, presence: true
 
-	include BCrypt
+	has_many :questions
+	has_many :answers
 
 	def password
     @password ||= Password.new(password_hash)
