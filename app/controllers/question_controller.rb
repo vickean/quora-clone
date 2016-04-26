@@ -1,14 +1,12 @@
-get '/createq' do
+get '/questions' do
   erb :"static/questions/create"
 end
 
-post '/createq' do
-  current_user
-  new_question = Question.new(params[:question])
-  @current_user.id = new_question.user_id
+post '/questions/new' do
+  new_question = current_user.questions.build(params[:question])
   if new_question.save
-    redirect '/qsaved'
+    redirect '/questions/saved'
   else
-    redirect '/qnotsaved'
+    redirect '/questions/notsaved'
   end
 end
