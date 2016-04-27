@@ -13,8 +13,14 @@
   <form action=/logout method=get>
   	<input id="logout_button" type="submit" value="Log Out">
   </form>
-  <form action=/questions method=get>
+  <form action="/user/<%= @current_user.id %>/question/new" method="get">
   	<input id="create_question_button" type="submit" value="Post a question!">
   </form>
   <% end %>
+</div>
+
+<div>
+  <form action=/ method=get>
+  	<input id="to_index_button" type="submit" value="back to Main Page">
+  </form>
 </div>

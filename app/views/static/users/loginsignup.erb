@@ -5,7 +5,7 @@
 
 <div>
   <h2>Sign Up!</h2>
-  <form method=post action=/signup>
+  <form method=post action="/user/create">
     <input type=text placeholder="Username" name="user[username]"><br>
     <input type=text placeholder="Email" name="user[email]"><br>
     <input type=password placeholder="Password" name="user[password]"></br>
@@ -19,5 +19,11 @@
     <input type=text placeholder="Email" name="user[email]"><br>
     <input type=password placeholder="Password" name="user[password]"></br>
     <input type=submit value="Log In">
+  </form>
+</div>
+
+<div>
+  <form action=/ method=get>
+  	<input id="to_index_button" type="submit" value="back to Main Page">
   </form>
 </div>

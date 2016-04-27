@@ -4,7 +4,27 @@
 </div>
 
 <div>
-  <form action=/loginsignup method=get>
-  	<input id="logout_button" type="submit" value="Sign In/Sign Up">
-  </form>
+  <p>
+    This is the main page. Top questions will be displayed here.
+  </p>
 </div>
+
+<% if logged_in? %>
+  <div>
+    <form action=/logout method=get>
+    	<input id="logout_button" type="submit" value="Log Out">
+    </form>
+    <form action="/user/<%= @current_user.id %>/question/new" method=get>
+    	<input id="create_question_button" type="submit" value="Post a question!">
+    </form>
+  </div>
+
+<% else %>
+
+  <div>
+    <form action=/user/new method=get>
+    	<input id="logout_button" type="submit" value="Sign In/Sign Up">
+    </form>
+  </div>
+
+<% end %>

@@ -1,8 +1,8 @@
-get '/loginsignup' do
+get '/user/new' do
   erb :"static/users/loginsignup"
 end
 
-post '/signup' do
+post '/user/create' do
   user = User.new(params[:user])
   if params[:user][:password].length < 8
     redirect '/pswd_too_shrt'
@@ -31,13 +31,13 @@ post '/login' do
   @user = User.authenticate(params[:user][:email], params[:user][:password])
   if @user
     log_in(@user)
-    redirect "/profile/#{@user.id}"
+    redirect "/user/profile/#{@user.id}"
   else
     redirect '/error'
   end
 end
 
-get '/profile/:user_id' do
+get '/user/profile/:user_id' do
   @user_profile = User.find(params[:user_id])
   erb :"static/users/profile"
 end

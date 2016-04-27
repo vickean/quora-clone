@@ -7,7 +7,7 @@
 
 <div>
   <h2>Create a question</h2>
-  <form method=post action=/questions/new>
+  <form method=post action=/questions/create>
     <input type=text placeholder="Question" name="question[question_title]"><br>
     <input type=text placeholder="Question description" name="question[question_desc]"></br>
     <input type=submit value="Ask question!">
@@ -24,3 +24,9 @@
 </div>
 
 <% end %>
+
+<div>
+  <form action=/ method=get>
+  	<input id="to_index_button" type="submit" value="back to Main Page">
+  </form>
+</div>
