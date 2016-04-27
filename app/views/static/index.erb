@@ -28,3 +28,31 @@
   </div>
 
 <% end %>
+
+
+
+<div class = 'table' >
+	<table align="center">
+	  <col width="300">
+	  <col width="300">
+    <col width="200">
+
+	<tr>
+		<th>Question</th>
+    <th>Description</th>
+		<th>Posted by</th>
+  </tr>
+
+    <% question_list = Question.all %>
+​
+   <% if question_list %>
+       <% question_list.each do |x| %>
+	            <tr>
+	               <td><a href="/questions/<%= x.id %>"><%= x.question_title %></a></td>
+                 <td><%= x.question_desc %></td>
+	               <td align="center"><%= User.find(x.user_id).username %></td>
+				</tr>
+	     	<%end%>
+	    <%end%>
+	</table>
+</div>
