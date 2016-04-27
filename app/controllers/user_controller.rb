@@ -31,10 +31,15 @@ post '/login' do
   @user = User.authenticate(params[:user][:email], params[:user][:password])
   if @user
     log_in(@user)
-    erb :"static/users/profile"
+    redirect "/profile/#{@user.id}"
   else
     redirect '/error'
   end
+end
+
+get '/profile/:user_id' do
+  @user_profile = User.find(params[:user_id])
+  erb :"static/users/profile"
 end
 
 get '/error' do
