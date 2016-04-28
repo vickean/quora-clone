@@ -16,3 +16,22 @@ get '/questions/:question_id' do
   access_question(this_question)
   erb :"static/questions/q_read"
 end
+
+get '/user/:user_id/questions/:question_id/edit' do
+  erb :"static/questions/q_update"
+end
+
+post '/user/:user_id/questions/:question_id/update' do
+  current_question
+  edit_question = Question.find(@current_question.id)
+  edit_question.update(params[:question])
+  redirect "/questions/#{@current_question.id}"
+end
+
+delete '/user/:user_id/questions/:question_id' do
+  current_user
+  current_question
+  delete_question = Question.find(@current_question.id)
+  delete_question.destroy
+  redirect "/user/profile/#{@current_user.id}"
+end

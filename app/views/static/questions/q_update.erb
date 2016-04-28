@@ -1,0 +1,35 @@
+<% current_user %>
+<% current_question %>
+
+<div>
+  <h1>SharQ</h1>
+  <h3>Answers. Fast!</h3>
+</div>
+
+<% if logged_in? %>
+
+<div>
+  <h2>Edit a question</h2>
+  <form method=post action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>/update">
+    <input type=text placeholder="Question" name="question[question_title]" value="<%= @current_question.question_title %>"><br>
+    <input type=text placeholder="Question description" name="question[question_desc]" value="<%= @current_question.question_desc %>"></br>
+    <input type=submit value="Edit question!">
+  </form>
+</div>
+
+<% else %>
+
+<div>
+  <h2>Please log in to post a question.</h2>
+  <form action=/loginsignup method=get>
+  	<input id="logout_button" type="submit" value="Sign In/Sign Up">
+  </form>
+</div>
+
+<% end %>
+
+<div>
+  <form action=/ method=get>
+  	<input id="to_index_button" type="submit" value="back to Main Page">
+  </form>
+</div>

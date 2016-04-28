@@ -3,14 +3,12 @@
   <h3>Answers. Fast!</h3>
 </div>
 
-<div>
-  <p>
-    This is the main page. Top questions will be displayed here.
-  </p>
-</div>
-
 <% if logged_in? %>
   <div>
+    <h2><%= @current_user.username %></h2>
+    <form action="/user/profile/<%= @current_user.id %>" method=get>
+    	<input id="logout_button" type="submit" value="Profile">
+    </form>
     <form action=/logout method=get>
     	<input id="logout_button" type="submit" value="Log Out">
     </form>
@@ -29,30 +27,27 @@
 
 <% end %>
 
-
-
 <div class = 'table' >
 	<table align="center">
-	  <col width="300">
-	  <col width="300">
-    <col width="200">
+    <tr>
+      <th><h2>Most Recent Questions</h2></th>
+    </tr>
+	  <col width="600">
 
-	<tr>
-		<th>Question</th>
-    <th>Description</th>
-		<th>Posted by</th>
-  </tr>
-
-    <% question_list = Question.all %>
+    <% question_list = Question.all.order(updated_at: :desc).limit(5) %>
 ​
    <% if question_list %>
        <% question_list.each do |x| %>
-	            <tr>
-	               <td><a href="/questions/<%= x.id %>"><%= x.question_title %></a></td>
-                 <td><%= x.question_desc %></td>
-	               <td align="center"><%= User.find(x.user_id).username %></td>
+	      <tr>
+	         <td>
+             <hr>
+             <h2><a href="/questions/<%= x.id %>"><%= x.question_title %></a></h2>
+             <h3><%= User.find(x.user_id).username %></h3>
+             <p><%= x.question_desc %></p>
+             <p></p>
+           </td>
 				</tr>
-	     	<%end%>
+	     <%end%>
 	    <%end%>
 	</table>
 </div>

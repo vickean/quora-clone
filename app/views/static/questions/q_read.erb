@@ -1,4 +1,5 @@
 <%current_question%>
+<%current_user%>
 
 <div>
   <h1>SharQ</h1>
@@ -18,3 +19,39 @@
   	<input id="to_index_button" type="submit" value="back to Main Page">
   </form>
 </div>
+
+<% if logged_in? %>
+  <% if @current_user.id == @current_question.user_id %>
+  <div>
+    <form action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>/edit" method=get>
+    	<input id="to_question_edit_button" type="submit" value="Edit Question">
+    </form>
+  </div>
+  <div>
+    <form action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>" method=post>
+      <input name="_method" type="hidden" value="delete">
+    	<input id="delete_question_button" type="submit" value="Delete Question">
+    </form>
+  </div>
+  <div>
+    <form action="/user/profile/<%= @current_user.id %>" method=get>
+      <input id="logout_button" type="submit" value="Profile">
+    </form>
+  </div>
+  <% end %>
+
+  <div>
+    <form action="/user/<%= @current_user.id %>/question/<%= @current_question.id %>/answer/new" method=get>
+    	<input id="answer_button" type="submit" value="Answer this question!">
+    </form>
+  </div>
+
+<% else %>
+
+  <div>
+    <form action=/user/new method=get>
+    	<input id="logout_button" type="submit" value="Sign In/Sign Up">
+    </form>
+  </div>
+
+<% end %>

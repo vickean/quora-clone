@@ -24,3 +24,28 @@
   	<input id="to_index_button" type="submit" value="back to Main Page">
   </form>
 </div>
+
+<div class = 'table' >
+	<table align="center">
+    <tr>
+      <th><h2>Your Most Recent Questions</h2></th>
+    </tr>
+	  <col width="600">
+
+    <% question_list = Question.where(user_id: @current_user.id).order(updated_at: :desc) %>
+​
+   <% if question_list %>
+       <% question_list.each do |x| %>
+	      <tr>
+	         <td>
+             <hr>
+             <h2><a href="/questions/<%= x.id %>"><%= x.question_title %></a></h2>
+             <h3><%= User.find(x.user_id).username %></h3>
+             <p><%= x.question_desc %></p>
+             <p></p>
+           </td>
+				</tr>
+	     <%end%>
+	    <%end%>
+	</table>
+</div>
