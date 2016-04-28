@@ -7,7 +7,7 @@
 </div>
 
 <% if logged_in? %>
-
+<h2><%= @current_user.username %></h2>
 <div>
   <h2>Edit a question</h2>
   <form method=post action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>/update">

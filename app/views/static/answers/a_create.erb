@@ -6,6 +6,10 @@
   <h3>Answers. Fast!</h3>
 </div>
 
+<% if logged_in? %>
+  <h2><%= @current_user.username %></h2>
+<% end %>
+
 <div>
   <h2><%= @current_question.question_title %></h2>
   <h3>Asked by <%= User.find(@current_question.user_id).username %></h3>

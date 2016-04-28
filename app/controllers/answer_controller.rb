@@ -4,13 +4,14 @@ end
 
 post '/answers/create' do
   current_question
+  current_user
   current_question_id = @current_question.id
   new_answer = current_user.answers.build(params[:answer])
   new_answer.question_id = current_question_id
   if new_answer.save
     redirect "/questions/#{current_question_id}"
   else
-    redirect '/answers/a_not_saved'
+    redirect "/user/#{@current_user.id}/question/#{current_question_id}/answer/new"
   end
 end
 

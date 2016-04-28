@@ -83,15 +83,17 @@
              <hr>
              <h3><%= User.find(x.user_id).username %></h3>
              <p><%= x.answer_content %></p>
-             <% if @current_user.id == x.user_id%>
-             <form action="/user/<%= @current_user.id %>/question/<%= @current_question.id %>/answer/<%= x.id %>/edit" method=get>
-             	<input id="edit_answer_button" type="submit" value="Edit Answer">
-             </form>
-             <form action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>/answers/<%= x.id %>" method=post>
-               <input name="_method" type="hidden" value="delete">
-             	<input id="delete_answer_button" type="submit" value="Delete Answer">
-             </form>
-             <% end %>
+             <% if logged_in? %>
+               <% if @current_user.id == x.user_id%>
+               <form action="/user/<%= @current_user.id %>/question/<%= @current_question.id %>/answer/<%= x.id %>/edit" method=get>
+               	<input id="edit_answer_button" type="submit" value="Edit Answer">
+               </form>
+               <form action="/user/<%= @current_user.id %>/questions/<%= @current_question.id %>/answers/<%= x.id %>" method=post>
+                 <input name="_method" type="hidden" value="delete">
+               	<input id="delete_answer_button" type="submit" value="Delete Answer">
+               </form>
+               <% end %>
+              <% end %>
              <p></p>
            </td>
 				</tr>
