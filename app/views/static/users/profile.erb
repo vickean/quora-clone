@@ -1,5 +1,5 @@
 <div>
-  <h1>SharQ</h1>
+  <h1><a href="/">SharQ</a></h1>
   <h3>Answers. Fast!</h3>
 </div>
 
@@ -40,8 +40,35 @@
 	         <td>
              <hr>
              <h2><a href="/questions/<%= x.id %>"><%= x.question_title %></a></h2>
+             <p>Answers: <%= Answer.where(question_id: x.id).length %></p>
              <h3><%= User.find(x.user_id).username %></h3>
              <p><%= x.question_desc %></p>
+             <p></p>
+           </td>
+				</tr>
+	     <%end%>
+	    <%end%>
+	</table>
+</div>
+
+<div class = 'table' >
+	<table align="center">
+    <tr>
+      <th><h2>Your Most Recent Answers</h2></th>
+    </tr>
+	  <col width="600">
+
+    <% answer_list = Answer.where(user_id: @current_user.id).order(updated_at: :desc) %>
+​
+   <% if answer_list %>
+       <% answer_list.each do |x| %>
+	      <tr>
+	         <td>
+             <hr>
+             <h2><a href="/questions/<%= x.question_id %>"><%= Question.find(x.question_id).question_title %></a></h2>
+             <p>Answers: <%= Answer.where(id: x.id).length %></p>
+             <h3><%= User.find(x.user_id).username %></h3>
+             <p><%= x.answer_content %></p>
              <p></p>
            </td>
 				</tr>

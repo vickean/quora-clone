@@ -1,5 +1,5 @@
 <div>
-  <h1>SharQ</h1>
+  <h1><a href="/">SharQ</a></h1>
   <h3>Answers. Fast!</h3>
 </div>
 
@@ -34,7 +34,7 @@
     </tr>
 	  <col width="600">
 
-    <% question_list = Question.all.order(updated_at: :desc).limit(5) %>
+    <% question_list = Question.all.order(updated_at: :desc).limit(20) %>
 ​
    <% if question_list %>
        <% question_list.each do |x| %>
@@ -42,6 +42,7 @@
 	         <td>
              <hr>
              <h2><a href="/questions/<%= x.id %>"><%= x.question_title %></a></h2>
+             <p>Answers: <%= x.answers.length %></p>
              <h3><%= User.find(x.user_id).username %></h3>
              <p><%= x.question_desc %></p>
              <p></p>
