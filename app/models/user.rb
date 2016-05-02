@@ -7,6 +7,16 @@ class User < ActiveRecord::Base
 
 	has_many :questions
 	has_many :answers
+	has_many :q_comments
+	has_many :a_comments
+	has_many :q_c_replies
+	has_many :a_c_replies
+	has_many :q_votes, dependent: :destroy
+	has_many :a_votes, dependent: :destroy
+	has_many :q_c_votes, dependent: :destroy
+	has_many :a_c_votes, dependent: :destroy
+	has_many :q_c_r_votes, dependent: :destroy
+	has_many :a_c_r_votes, dependent: :destroy
 
 	def password
     @password ||= Password.new(password_hash)
